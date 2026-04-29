@@ -1,7 +1,7 @@
 FlipScore Privacy Policy
 Last updated: April 27, 2026
 1. Overview
-FlipScore ("we", "our", or "us") is operated by Aaron Haines as a sole proprietorship. This Privacy Policy explains what information FlipScore collects, how it is used, and your rights regarding your data.
+FlipScore ("we", "our", or "us") is operated as a sole proprietorship. This Privacy Policy explains what information FlipScore collects, how it is used, and your rights regarding your data.
 2. Information We Collect
 Account information When you create an account we collect your email address and a hashed password via Firebase Authentication.
 Scan and analysis data When you scan an item, the image or URL you submit is sent to the Anthropic Claude API for analysis and to the eBay API for market pricing data. Images are not stored. The analysis result, verdict, and pricing data are stored in your account.
@@ -35,4 +35,4 @@ We use Firebase's built-in security features including encrypted data transmissi
 9. Changes to This Policy
 We may update this policy from time to time. We will notify users of material changes via the app or email. Continued use of the app after changes constitutes acceptance of the updated policy.
 10. Contact
-For privacy questions or data requests contact: Aaron Haines flip.score.app@gmail.com
+For privacy questions or data requests contact: flip.score.app@gmail.com
