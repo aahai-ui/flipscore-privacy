@@ -1,31 +1,492 @@
-FlipScore Privacy Policy
-Last updated: April 27, 2026
-1. Overview
-FlipScore ("we", "our", or "us") is operated as a sole proprietorship. This Privacy Policy explains what information FlipScore collects, how it is used, and your rights regarding your data.
-2. Information We Collect
-Account information When you create an account we collect your email address and a hashed password via Firebase Authentication.
-Scan and analysis data When you scan an item, the image or URL you submit is sent to the Anthropic Claude API for analysis and to the eBay API for market pricing data. Images are not stored. The analysis result, verdict, and pricing data are stored in your account.
-Inventory data Item records you create — including purchase price, sale price, dates, platform, and notes — are stored in your account in Firebase Firestore.
-Usage data We track your scan count and description generation count to enforce subscription limits. This data is stored in Firebase Firestore.
-Device and analytics data We collect anonymous usage events via Firebase Analytics — such as screens viewed and features used — to understand how the app is used and improve it. This data is not linked to your identity.
-3. How We Use Your Information
-We use your information to:
-Provide the FlipScore analysis, inventory, and reporting features
-Enforce subscription tier limits
-Process subscription payments via Google Play Billing
-Improve the app based on anonymous usage patterns
-We do not sell your data. We do not share your data with third parties except as described in this policy.
-4. Third Party Services
-FlipScore uses the following third party services which have their own privacy policies:
-Firebase (Google) — authentication, database, and analytics — firebase.google.com/support/privacy
-Anthropic Claude API — AI-powered item analysis and listing generation — anthropic.com/privacy
-eBay API — market pricing data — ebay.com/help/policies/member-behaviour-policies/ebay-privacy-policy
-Google Play Billing — subscription payment processing — payments.google.com/files/privacy.html
-5. Data Retention
-Your account data is retained for as long as your account exists. If you delete your account, your data is deleted from our systems within 30 days.
-6. Your Rights
-You may:
-Request a copy of your data by contacting us at flip.score.app@gmail.com
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — FlipScore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caladea:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #111010;
+      --dark:     #1a1917;
+      --surface:  #201f1d;
+      --border:   #2e2c29;
+      --gold:     #e8a020;
+      --gold-dim: #b87c18;
+      --white:    #f0ede8;
+      --muted:    #8a8580;
+      --body-font: 'Source Sans 3', sans-serif;
+      --display-font: 'Caladea', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: var(--body-font);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── Grid overlay background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 1;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #0d0c0b 0%, var(--black) 100%);
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+
+    .wordmark {
+      font-family: var(--display-font);
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .wordmark span:first-child { color: var(--white); }
+    .wordmark span:last-child  { color: var(--gold); }
+
+    .tagline {
+      font-family: var(--display-font);
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: var(--gold);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-top: 6px;
+    }
+
+    .underline-bar {
+      width: 180px;
+      height: 2px;
+      background: var(--gold);
+      margin: 14px auto 0;
+      opacity: 0.6;
+    }
+
+    .doc-label {
+      margin-top: 32px;
+      display: inline-block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 18px;
+      font-family: var(--body-font);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Main layout ── */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 740px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── Last updated bar ── */
+    .meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta-bar::before {
+      content: '';
+      display: block;
+      width: 3px;
+      height: 14px;
+      background: var(--gold);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ── Section ── */
+    section {
+      margin-bottom: 44px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .section-num {
+      font-family: var(--display-font);
+      font-size: 0.9rem;
+      color: var(--gold);
+      font-weight: 700;
+      min-width: 22px;
+      opacity: 0.75;
+    }
+
+    h2 {
+      font-family: var(--display-font);
+      font-size: clamp(1.15rem, 3vw, 1.45rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .section-body {
+      padding-left: 36px;
+    }
+
+    p {
+      color: #c8c4be;
+      margin-bottom: 14px;
+      font-size: 0.97rem;
+    }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── Sub-items (for lists within sections) ── */
+    .sub-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 8px 20px;
+      margin-bottom: 14px;
+      font-size: 0.93rem;
+    }
+    .sub-item dt {
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding-top: 2px;
+      line-height: 1.5;
+    }
+    .sub-item dd {
+      color: #c8c4be;
+      line-height: 1.6;
+    }
+
+    /* ── Bullet list ── */
+    ul.clean {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul.clean li {
+      position: relative;
+      padding-left: 18px;
+      color: #c8c4be;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    ul.clean li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* ── Third-party services table ── */
+    .services {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .service-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+    .service-row:last-child { border-bottom: none; }
+    .service-row > * {
+      padding: 12px 16px;
+      line-height: 1.5;
+    }
+    .service-name {
+      color: var(--white);
+      font-weight: 600;
+      border-right: 1px solid var(--border);
+      background: rgba(255,255,255,0.02);
+    }
+    .service-desc {
+      color: var(--muted);
+    }
+    .service-link {
+      display: block;
+      color: var(--gold-dim);
+      font-size: 0.78rem;
+      margin-top: 3px;
+      text-decoration: none;
+      word-break: break-all;
+      opacity: 0.85;
+    }
+    .service-link:hover { opacity: 1; color: var(--gold); }
+
+    /* ── Highlight block ── */
+    .notice {
+      background: var(--surface);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 4px 4px 0;
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #c8c4be;
+      margin-bottom: 14px;
+    }
+
+    /* ── Contact ── */
+    .contact-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.97rem;
+    }
+    .contact-link:hover { text-decoration: underline; }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    footer strong {
+      color: var(--gold);
+      font-family: var(--display-font);
+      font-size: 0.88rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 520px) {
+      .sub-item { grid-template-columns: 1fr; gap: 2px 0; }
+      .sub-item dt { margin-bottom: 2px; }
+      .service-row { grid-template-columns: 1fr; }
+      .service-name { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wordmark">
+      <span>Flip</span><span>Score</span>
+    </div>
+    <div class="tagline">Reseller Intelligence</div>
+    <div class="underline-bar"></div>
+    <div class="doc-label">Privacy Policy</div>
+  </header>
+
+  <main>
+
+    <div class="meta-bar">Last updated: April 27, 2026</div>
+
+    <!-- 1. Overview -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>Overview</h2>
+      </div>
+      <div class="section-body">
+        <p>FlipScore ("we", "our", or "us") is operated as a sole proprietorship. This Privacy Policy explains what information FlipScore collects, how it is used, and your rights regarding your data.</p>
+      </div>
+    </section>
+
+    <!-- 2. Information We Collect -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>Information We Collect</h2>
+      </div>
+      <div class="section-body">
+        <dl>
+          <div class="sub-item">
+            <dt>Account info</dt>
+            <dd>When you create an account we collect your email address and a hashed password via Firebase Authentication.</dd>
+          </div>
+          <div class="sub-item">
+            <dt>Scan &amp; analysis data</dt>
+            <dd>When you scan an item, the image or URL you submit is sent to the Anthropic Claude API for analysis and to the eBay API for market pricing data. Images are not stored. The analysis result, verdict, and pricing data are stored in your account.</dd>
+          </div>
+          <div class="sub-item">
+            <dt>Inventory data</dt>
+            <dd>Item records you create — including purchase price, sale price, dates, platform, and notes — are stored in your account in Firebase Firestore.</dd>
+          </div>
+          <div class="sub-item">
+            <dt>Usage data</dt>
+            <dd>We track your scan count and description generation count to enforce subscription limits. This data is stored in Firebase Firestore.</dd>
+          </div>
+          <div class="sub-item">
+            <dt>Device &amp; analytics</dt>
+            <dd>We collect anonymous usage events via Firebase Analytics — such as screens viewed and features used — to understand how the app is used and improve it. This data is not linked to your identity.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 3. How We Use Your Information -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>How We Use Your Information</h2>
+      </div>
+      <div class="section-body">
+        <p>We use your information to:</p>
+        <ul class="clean" style="margin-bottom: 16px;">
+          <li>Provide the FlipScore analysis, inventory, and reporting features</li>
+          <li>Enforce subscription tier limits</li>
+          <li>Process subscription payments via Google Play Billing</li>
+          <li>Improve the app based on anonymous usage patterns</li>
+        </ul>
+        <div class="notice">We do not sell your data. We do not share your data with third parties except as described in this policy.</div>
+      </div>
+    </section>
+
+    <!-- 4. Third-Party Services -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>Third-Party Services</h2>
+      </div>
+      <div class="section-body">
+        <p style="margin-bottom: 16px;">FlipScore uses the following third-party services, each with their own privacy policies:</p>
+        <div class="services">
+          <div class="service-row">
+            <div class="service-name">Firebase (Google)<a class="service-link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a></div>
+            <div class="service-desc">Authentication, database, and analytics</div>
+          </div>
+          <div class="service-row">
+            <div class="service-name">Anthropic Claude API<a class="service-link" href="https://anthropic.com/privacy" target="_blank" rel="noopener">anthropic.com/privacy</a></div>
+            <div class="service-desc">AI-powered item analysis and listing generation</div>
+          </div>
+          <div class="service-row">
+            <div class="service-name">eBay API<a class="service-link" href="https://www.ebay.com/help/policies/member-behaviour-policies/ebay-privacy-policy" target="_blank" rel="noopener">ebay.com/help/policies/privacy-notice</a></div>
+            <div class="service-desc">Market pricing data</div>
+          </div>
+          <div class="service-row">
+            <div class="service-name">Google Play Billing<a class="service-link" href="https://payments.google.com/files/privacy.html" target="_blank" rel="noopener">payments.google.com/files/privacy.html</a></div>
+            <div class="service-desc">Subscription payment processing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Data Retention -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>Data Retention</h2>
+      </div>
+      <div class="section-body">
+        <p>Your account data is retained for as long as your account exists. If you delete your account, your data is deleted from our systems within 30 days.</p>
+      </div>
+    </section>
+
+    <!-- 6. Your Rights -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>Your Rights</h2>
+      </div>
+      <div class="section-body">
+        <ul class="clean">
+          <li>Request a copy of your data by contacting us at <a class="contact-link" href="mailto:flip.score.app@gmail.com">flip.score.app@gmail.com</a></li>
+          <li>Request deletion of your account and data by contacting us at <a class="contact-link" href="mailto:flip.score.app@gmail.com">flip.score.app@gmail.com</a></li>
+          <li>Export your inventory and sales data using the CSV export feature within the app</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 7. Children's Privacy -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>Children's Privacy</h2>
+      </div>
+      <div class="section-body">
+        <p>FlipScore is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+      </div>
+    </section>
+
+    <!-- 8. Security -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">08</span>
+        <h2>Security</h2>
+      </div>
+      <div class="section-body">
+        <p>We use Firebase's built-in security features including encrypted data transmission and Firestore security rules that restrict access to your own data only.</p>
+      </div>
+    </section>
+
+    <!-- 9. Changes to This Policy -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">09</span>
+        <h2>Changes to This Policy</h2>
+      </div>
+      <div class="section-body">
+        <p>We may update this policy from time to time. We will notify users of material changes via the app or email. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+      </div>
+    </section>
+
+    <!-- 10. Contact -->
+    <section>
+      <div class="section-header">
+        <span class="section-num">10</span>
+        <h2>Contact</h2>
+      </div>
+      <div class="section-body">
+        <p>For privacy questions or data requests:</p>
+        <p><a class="contact-link" href="mailto:flip.score.app@gmail.com">flip.score.app@gmail.com</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>FlipScore</strong> &nbsp;·&nbsp; Reseller Intelligence &nbsp;·&nbsp; &copy; 2026
+  </footer>
+
+</body>
+</html>
 Request deletion of your account and data by contacting us at flip.score.app@gmail.com
 Export your inventory and sales data using the CSV export feature within the app
 7. Children's Privacy
